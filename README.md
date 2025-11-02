@@ -1,1 +1,1 @@
-# walkapp
+# WalkApp Skeleton
