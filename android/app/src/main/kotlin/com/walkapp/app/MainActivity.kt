@@ -1,5 +1,6 @@
-package com.walkapp.app
+package com.mrtzrsy.walkapp
 
 import io.flutter.embedding.android.FlutterActivity
 
-class MainActivity: FlutterActivity()
+class MainActivity: FlutterActivity() {
+}
