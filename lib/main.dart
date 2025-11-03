@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -9,50 +8,38 @@ void main() async {
   runApp(const WalkApp());
 }
 
-class WalkApp extends StatelessWidget {
-  const WalkApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const StepScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class StepScreen extends StatefulWidget {
-  const StepScreen({super.key});
+class WalkApp extends StatefulWidget {
+  const WalkApp({Key? key}) : super(key: key);
 
   @override
-  State<StepScreen> createState() => _StepScreenState();
+  _WalkAppState createState() => _WalkAppState();
 }
 
-class _StepScreenState extends State<StepScreen> {
-  StreamSubscription<StepCount>? _subscription;
-  int totalSteps = 0;
+class _WalkAppState extends State<WalkApp> {
+  int _steps = 0;
 
   @override
   void initState() {
     super.initState();
-    _subscription = Pedometer.stepCountStream.listen((event) {
-      setState(() => totalSteps = event.steps);
+    initStepCounter();
+  }
+
+  void initStepCounter() {
+    Pedometer.stepCountStream.listen((event) {
+      setState(() => _steps = event.steps);
     });
   }
 
   @override
-  void dispose() {
-    _subscription?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("WalkApp - Adım Sayar")),
-      body: Center(
-        child: Text(
-          "$totalSteps Adım",
-          style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text("WalkApp - Adım Sayar")),
+        body: Center(
+          child: Text(
+            "Atılan Adım: $_steps",
+            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
