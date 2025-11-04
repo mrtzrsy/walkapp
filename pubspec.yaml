@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  pedometer: ^4.1.1     # ✅ Null-safety destekli sürüm
+  pedometer: ^4.1.0     # ✅ Null-safety destekli sürüm
   permission_handler: ^10.2.0
 
 dev_dependencies:
