@@ -1,4 +1,4 @@
-package com.mrtzrsy.walkapp
+package com.walkapp.walkapp
 
 import io.flutter.embedding.android.FlutterActivity
 
